@@ -9,7 +9,7 @@ An Ultima-style, top-down role-playing game set in the Saxony of Henry the Fowle
 - **Arrow keys / WASD** to walk, or click the map. Walk into people to talk.
 - **1–9 / Enter** to choose in conversations and fights.
 - **C** opens the codex (historical notes, each marked by how well attested it is). **H** for help.
-- Sleep in your bed to end the season. The game autosaves at each season's turn; you can also save by hand. Saves live in your browser.
+- Sleep in your bed to end the season. The game autosaves at each season's turn and whenever you close or leave the page; you can also save by hand. Saves live in your browser.
 - You can die.
 
 ## Running it locally

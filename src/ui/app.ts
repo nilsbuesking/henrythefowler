@@ -134,6 +134,12 @@ export class App {
 
     this.applyTextSize();
     window.addEventListener("keydown", (e) => this.onKey(e));
+    // Save when the page is closed, reloaded or hidden (switching tabs or apps
+    // on a phone), so nothing since the last save is lost.
+    window.addEventListener("pagehide", () => this.saveOnLeave());
+    document.addEventListener("visibilitychange", () => {
+      if (document.visibilityState === "hidden") this.saveOnLeave();
+    });
     this.renderer.canvas.addEventListener("click", (e) => {
       const d = this.renderer.directionFromClick(e);
       if (d) this.step(d[0], d[1]);
@@ -190,6 +196,12 @@ export class App {
   private save(): void {
     if (!this.game) return;
     this.toast(writeSave("manual", this.game.state) ? "Saga saved." : "Could not save in this browser.");
+  }
+
+  /** Quietly writes the autosave slot. A dead hero is not saved, so Load returns to before the death. */
+  private saveOnLeave(): void {
+    if (!this.game || this.game.state.mode.kind === "dead") return;
+    writeSave("auto", this.game.state);
   }
 
   private toast(msg: string): void {
@@ -650,7 +662,7 @@ export class App {
         <dt>+ and −</dt><dd>Larger or smaller text (also the A+ and A− buttons in the side panel).</dd>
       </dl>
       <p>Checks roll a d20 and add one of your qualities; the odds are shown beside each choice. Wounds carry over between fights and heal slowly with the seasons. You can die.</p>
-      <p>Sleep in your bed to end the season. The game saves itself each time a season turns; you can also save by hand.</p>
+      <p>Sleep in your bed to end the season. The game saves itself each time a season turns and whenever you close or leave the page; you can also save by hand.</p>
       <div class="choices"><button class="choice" data-act="close"><span class="key">↵</span>Close</button></div>
     </div>`;
   }
