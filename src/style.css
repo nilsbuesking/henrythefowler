@@ -40,6 +40,15 @@ body {
   font-size: 1.0625rem;
 }
 
+/* Stop the browser zooming on quick repeated taps (phones and tablets);
+   pinch-to-zoom still works. */
+html,
+body,
+button,
+canvas {
+  touch-action: manipulation;
+}
+
 button {
   font: inherit;
   color: inherit;
@@ -92,6 +101,9 @@ button {
 }
 canvas.map {
   display: block;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
   width: 100%;
   height: 100%;
   image-rendering: pixelated;

@@ -244,15 +244,19 @@ export class App {
       if (e.key === "Enter") this.newGame();
       return;
     }
-    if (e.key === "+" || e.key === "=") {
-      this.changeTextSize(1);
-      e.preventDefault();
-      return;
-    }
-    if (e.key === "-" || e.key === "_") {
-      this.changeTextSize(-1);
-      e.preventDefault();
-      return;
+    // Text size keys: only the main keyboard's + and −, never the number pad,
+    // whose + and − sit right beside the arrow keys and are easy to hit by accident.
+    if (!e.code.startsWith("Numpad") && !e.ctrlKey && !e.metaKey) {
+      if (e.key === "+") {
+        this.changeTextSize(1);
+        e.preventDefault();
+        return;
+      }
+      if (e.key === "-") {
+        this.changeTextSize(-1);
+        e.preventDefault();
+        return;
+      }
     }
     const k = e.key;
     if (this.modal === "codex" || this.modal === "help") {
@@ -291,7 +295,13 @@ export class App {
       d: [1, 0],
     };
     if (m.kind === "explore") {
-      const d = dirs[k];
+      const numpad: Record<string, [number, number]> = {
+        Numpad8: [0, -1],
+        Numpad2: [0, 1],
+        Numpad4: [-1, 0],
+        Numpad6: [1, 0],
+      };
+      const d = dirs[k] ?? numpad[e.code];
       if (d) {
         e.preventDefault();
         this.step(d[0], d[1]);
