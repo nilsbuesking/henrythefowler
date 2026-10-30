@@ -1,0 +1,140 @@
+[
+ {
+  "id": "oda",
+  "name": "Oda, your wife",
+  "map": "hall",
+  "x": 10,
+  "y": 2,
+  "sprite": "woman",
+  "wander": 1,
+  "talk": [
+   {
+    "event": "oda"
+   }
+  ]
+ },
+ {
+  "id": "folcward",
+  "name": "Folcward, your oldest man",
+  "map": "village",
+  "x": 11,
+  "y": 6,
+  "sprite": "retainer",
+  "wander": 1,
+  "talk": [
+   {
+    "event": "folcward"
+   }
+  ]
+ },
+ {
+  "id": "reginbern",
+  "name": "Reginbern, your neighbour",
+  "map": "village",
+  "x": 14,
+  "y": 23,
+  "sprite": "peasant",
+  "wander": 2,
+  "talk": [
+   {
+    "if": [
+     {
+      "flag": "pigs_settled"
+     }
+    ],
+    "event": "reginbern_after"
+   },
+   {
+    "if": [
+     {
+      "flag": "pigs_refused"
+     }
+    ],
+    "event": "reginbern_refuses"
+   },
+   {
+    "if": [
+     {
+      "flag": "pigs_known"
+     }
+    ],
+    "event": "reginbern_dispute"
+   },
+   {
+    "event": "reginbern_greet"
+   }
+  ]
+ },
+ {
+  "id": "eilward",
+  "name": "Eilward, the Count's reeve",
+  "map": "village",
+  "x": 18,
+  "y": 13,
+  "sprite": "reeve",
+  "wander": 1,
+  "talk": [
+   {
+    "if": [
+     {
+      "flag": "met_eilward"
+     }
+    ],
+    "event": "eilward"
+   },
+   {
+    "event": "eilward_first"
+   }
+  ]
+ },
+ {
+  "id": "marcward",
+  "name": "Marcward the smith",
+  "map": "village",
+  "x": 22,
+  "y": 10,
+  "sprite": "smith",
+  "wander": 1,
+  "talk": [
+   {
+    "event": "smith"
+   }
+  ]
+ },
+ {
+  "id": "bovo",
+  "name": "Father Bovo",
+  "map": "village",
+  "x": 30,
+  "y": 17,
+  "sprite": "priest",
+  "wander": 1,
+  "talk": [
+   {
+    "if": [
+     {
+      "flag": "met_bovo"
+     }
+    ],
+    "event": "priest"
+   },
+   {
+    "event": "priest_first"
+   }
+  ]
+ },
+ {
+  "id": "hildegund",
+  "name": "Hildegund the alewife",
+  "map": "village",
+  "x": 21,
+  "y": 13,
+  "sprite": "woman2",
+  "wander": 2,
+  "talk": [
+   {
+    "event": "hildegund"
+   }
+  ]
+ }
+]

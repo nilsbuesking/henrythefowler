@@ -1,0 +1,29 @@
+{
+  "name": "henrythefowler",
+  "version": "0.1.0",
+  "description": "An Ultima-style role-playing game set in the Saxony of Henry the Fowler (919–936).",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nilsbuesking/henrythefowler.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nilsbuesking/henrythefowler/issues"
+  },
+  "homepage": "https://github.com/nilsbuesking/henrythefowler#readme",
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vite": "^6.4.5",
+    "vitest": "^3.2.7"
+  },
+  "private": true,
+  "type": "module"
+}

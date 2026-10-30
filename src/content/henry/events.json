@@ -1,0 +1,1305 @@
+[
+  {
+    "id": "intro",
+    "title": "Spring, in the year of the Lord 919",
+    "text": "The winter has broken over the Harz foreland, and the snow-water runs loud in the stream below your hall.\n\nYou are {name}, a free man of the Saxons, and this *Hof* is yours: the hall your grandfather raised, the byre, the fields that run down towards the water, and Folcward and young Ebo, who eat your bread and owe you their service.\n\nAt Christmas King Conrad died, the Frank who fought our duke for half his reign. Men say that on his deathbed he sent the crown and the holy lance to Duke Henry, his old enemy. Now the Count has ridden south, and the talk at every hearth is of Fritzlar.\n\nBut kings are far away, and the spring field will not sow itself. Oda is at the hearth. Folcward waits in the yard.",
+    "onShow": [
+      {
+        "type": "codex",
+        "id": "conrad"
+      },
+      {
+        "type": "codex",
+        "id": "saxon_orders"
+      },
+      {
+        "type": "flag",
+        "key": "met_oda"
+      }
+    ]
+  },
+  {
+    "id": "oda",
+    "title": "Oda",
+    "text": "Oda looks up from the loom, a thread between her teeth. \"Well, husband?\"",
+    "choices": [
+      {
+        "text": "\"What must be done before the summer?\"",
+        "result": {
+          "text": "She counts on her fingers. \"The spring field, first. Folcward has been asking since Lent. The reeve will want the Count's due. And a ewe is missing; Folcward thinks she was taken, not lost.\" She frowns. \"And Reginbern's pigs have been at our barley again. Go gently with him. We need neighbours more than we need pride.\"\n\nWhen the work is done, sleep in our bed and let the season turn.",
+          "next": "oda"
+        }
+      },
+      {
+        "text": "\"The field is sown.\"",
+        "if": [
+          {
+            "flag": "sown"
+          },
+          {
+            "notFlag": "oda_sown"
+          }
+        ],
+        "result": {
+          "text": "\"Then God send rain, and not too much of it.\" She smiles for the first time in a week.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "oda_sown"
+            },
+            {
+              "type": "heal"
+            }
+          ],
+          "next": "oda"
+        }
+      },
+      {
+        "text": "\"The man in the wood will trouble us no more.\"",
+        "if": [
+          {
+            "flag": "outlaw_done"
+          },
+          {
+            "notFlag": "oda_outlaw"
+          }
+        ],
+        "result": {
+          "text": "She looks at your hands, then at your face, and asks nothing more. That night she sets the best of the cheese before you.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "oda_outlaw"
+            }
+          ],
+          "next": "oda"
+        }
+      },
+      {
+        "text": "Leave her to her work."
+      }
+    ]
+  },
+  {
+    "id": "chest",
+    "title": "Your father's chest",
+    "text": "The old chest by the wall smells of tallow and cedar. Under the winter blankets lie your father's leather jerkin, still supple, and his lime-wood shield, the hide face scarred from the Danish border.",
+    "choices": [
+      {
+        "text": "Put them on.",
+        "result": {
+          "text": "The jerkin fits as if it had waited for you. You sling the shield across your back.",
+          "effects": [
+            {
+              "type": "item",
+              "id": "jerkin",
+              "delta": 1
+            },
+            {
+              "type": "item",
+              "id": "shield",
+              "delta": 1
+            },
+            {
+              "type": "equip",
+              "id": "jerkin"
+            },
+            {
+              "type": "equip",
+              "id": "shield"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "strongbox",
+    "title": "The strongbox",
+    "text": "The iron-bound box holds what silver the household has: a handful of *denarii*, some clipped, one with the head of a Carolingian emperor worn almost smooth. You count them and lock the lid again."
+  },
+  {
+    "id": "rest",
+    "title": "Your bed",
+    "text": "The straw is fresh and the hearth is banked. You could sleep here and let the season turn.",
+    "choices": [
+      {
+        "text": "Sleep, and let the season turn.",
+        "if": [
+          {
+            "flag": "sown"
+          }
+        ],
+        "result": {
+          "text": "You sleep. The days run on: rain, sun, the slow green of the barley.",
+          "endSeason": true
+        }
+      },
+      {
+        "text": "Sleep, though the field lies unsown.",
+        "if": [
+          {
+            "notFlag": "sown"
+          }
+        ],
+        "result": {
+          "text": "You sleep, and the season passes. Folcward sows what he can alone, late and thin.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "sowing",
+              "value": 0
+            },
+            {
+              "type": "flag",
+              "key": "sown"
+            }
+          ],
+          "endSeason": true
+        }
+      },
+      {
+        "text": "Not yet. There is work to do."
+      }
+    ]
+  },
+  {
+    "id": "folcward",
+    "title": "Folcward",
+    "text": "Folcward served your father before you. He leans on his staff and squints at the sky. \"Lord.\"",
+    "choices": [
+      {
+        "text": "\"Yoke the oxen. We sow the spring field today.\"",
+        "if": [
+          {
+            "notFlag": "sown"
+          }
+        ],
+        "check": {
+          "stat": "craft",
+          "dc": 13
+        },
+        "success": {
+          "text": "You drive the furrows straight and deep and broadcast the barley with an even hand, as your father taught you. Ebo follows with the harrow. By dusk the field is dark and smooth, and Folcward nods once, which from him is praise.",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "grain",
+              "delta": -2
+            },
+            {
+              "type": "flag",
+              "key": "sowing",
+              "value": 2
+            },
+            {
+              "type": "flag",
+              "key": "sown"
+            },
+            {
+              "type": "codex",
+              "id": "fields"
+            }
+          ]
+        },
+        "failure": {
+          "text": "The off-ox balks at the headland and the share runs shallow in the wet ground. The seed goes in, but unevenly, and the crows have their share of it before the harrow comes.",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "grain",
+              "delta": -2
+            },
+            {
+              "type": "flag",
+              "key": "sowing",
+              "value": 1
+            },
+            {
+              "type": "flag",
+              "key": "sown"
+            },
+            {
+              "type": "codex",
+              "id": "fields"
+            }
+          ]
+        }
+      },
+      {
+        "text": "\"What of the pigs in the barley?\"",
+        "if": [
+          {
+            "notFlag": "pigs_known"
+          }
+        ],
+        "result": {
+          "text": "\"Reginbern's sows, lord. They came through the hedge by the boundary stone and rooted up a good strip of the winter field. That is the third time since Candlemas.\" He spits. \"He owes you for it, by any law.\"",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "pigs_known"
+            },
+            {
+              "type": "codex",
+              "id": "compensation"
+            }
+          ],
+          "next": "folcward"
+        }
+      },
+      {
+        "text": "\"Has the grey ewe been found?\"",
+        "if": [
+          {
+            "notFlag": "ewe_known"
+          }
+        ],
+        "result": {
+          "text": "\"Not lost, lord. Taken. There was blood by the fold and the tracks of one man, going south-east past the church into the wood.\" He lowers his voice. \"Ebo saw smoke there two nights back. Someone is living rough in the Count's forest.\"",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "ewe_known"
+            }
+          ],
+          "next": "folcward"
+        }
+      },
+      {
+        "text": "\"Back to your work.\""
+      }
+    ]
+  },
+  {
+    "id": "field_damage",
+    "title": "The winter field",
+    "text": "Near the boundary stone the rye is torn up in great ragged patches, the earth turned over as if by a drunken plough. Pig-tracks run back through a gap in the hedge towards Reginbern's farmstead.",
+    "onShow": [
+      {
+        "type": "codex",
+        "id": "compensation"
+      }
+    ]
+  },
+  {
+    "id": "reginbern_greet",
+    "title": "Reginbern",
+    "text": "Reginbern raises a hand. \"God keep you, neighbour. Fine weather for the sowing, if it holds.\""
+  },
+  {
+    "id": "reginbern_dispute",
+    "title": "Reginbern",
+    "text": "Reginbern sees your face and his own closes like a door. Behind him, his son Ricdag sets down the hay-fork and comes to stand at his father's shoulder.\n\n\"If this is about the pigs, {name}, the hedge is as much yours as mine.\"",
+    "choices": [
+      {
+        "text": "Demand *Buße*, as the law allows. (Standing)",
+        "check": {
+          "stat": "standing",
+          "dc": 14
+        },
+        "success": {
+          "text": "You name the damage and the price, plainly, as a free man to a free man. Reginbern grumbles, but the law is the law and his neighbours are listening. He counts two pennies into your palm and swears the hedge will be mended by Sunday.",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "silver",
+              "delta": 2
+            },
+            {
+              "type": "flag",
+              "key": "pigs_settled"
+            },
+            {
+              "type": "rep",
+              "key": "village",
+              "delta": 1
+            }
+          ]
+        },
+        "failure": {
+          "text": "\"Pay you? For a few yards of rye?\" Reginbern laughs, and Ricdag laughs with him. \"Go and count your sheep, {name}. I hear you're one short.\"",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "pigs_refused"
+            }
+          ]
+        }
+      },
+      {
+        "text": "Speak of the hedge, the boundary, and what is fair between neighbours. (Wits)",
+        "check": {
+          "stat": "wits",
+          "dc": 13
+        },
+        "success": {
+          "text": "You do not accuse. You speak of the boundary stone your fathers set together, of the hedge that both farms need, of the long years you will still be neighbours. Reginbern rubs his neck. In the end he offers a penny and a day's work from Ricdag on the hedge, and you take both.",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "silver",
+              "delta": 1
+            },
+            {
+              "type": "flag",
+              "key": "pigs_settled"
+            },
+            {
+              "type": "rep",
+              "key": "village",
+              "delta": 2
+            }
+          ]
+        },
+        "failure": {
+          "text": "You choose your words with care, but they come out wrong, and Reginbern hears only an accusation. \"I'll not be lectured on my own land.\"",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "pigs_refused"
+            }
+          ]
+        }
+      },
+      {
+        "text": "Let it go. A few yards of rye are not worth a feud.",
+        "result": {
+          "text": "You clap him on the shoulder and talk of the weather instead. Reginbern looks surprised, then grateful. The village will hear that {name} is a patient man. Some will call it weakness.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "pigs_settled"
+            },
+            {
+              "type": "rep",
+              "key": "village",
+              "delta": 1
+            },
+            {
+              "type": "stat",
+              "key": "standing",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "text": "Seize one of his pigs as a pledge.",
+        "result": {
+          "text": "You step past him towards the sty. Ricdag moves to block you, fists already balled.",
+          "combat": {
+            "enemy": "ricdag",
+            "onWin": "brawl_won",
+            "onLose": "brawl_lost",
+            "onFlee": "brawl_fled",
+            "parley": {
+              "stat": "standing",
+              "dc": 13,
+              "event": "brawl_parley"
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "reginbern_refuses",
+    "title": "Reginbern",
+    "text": "Reginbern turns his back on you. The matter of the pigs lies unsettled between your houses.",
+    "choices": [
+      {
+        "text": "Then I will put it before the reeve, at the *Ding*.",
+        "if": [
+          {
+            "notFlag": "ding_case"
+          }
+        ],
+        "result": {
+          "text": "\"Do that,\" says Reginbern, but he does not look as sure as he sounds.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "ding_case"
+            },
+            {
+              "type": "codex",
+              "id": "ding"
+            }
+          ]
+        }
+      },
+      {
+        "text": "Seize one of his pigs as a pledge.",
+        "result": {
+          "text": "You step past him towards the sty. Ricdag moves to block you, fists already balled.",
+          "combat": {
+            "enemy": "ricdag",
+            "onWin": "brawl_won",
+            "onLose": "brawl_lost",
+            "onFlee": "brawl_fled",
+            "parley": {
+              "stat": "standing",
+              "dc": 13,
+              "event": "brawl_parley"
+            }
+          }
+        }
+      },
+      {
+        "text": "Leave it, for now."
+      }
+    ]
+  },
+  {
+    "id": "brawl_won",
+    "title": "In the mud of the yard",
+    "text": "Ricdag sits in the muck holding his jaw. You drag a squealing young sow out of the sty and drive her home before you, and half the village sees it.\n\nYou have your pledge. You have also taught the village that {name} takes what he is owed with his fists.",
+    "onShow": [
+      {
+        "type": "resource",
+        "key": "livestock",
+        "delta": 1
+      },
+      {
+        "type": "flag",
+        "key": "pigs_settled"
+      },
+      {
+        "type": "rep",
+        "key": "village",
+        "delta": -1
+      },
+      {
+        "type": "stat",
+        "key": "standing",
+        "delta": 1
+      }
+    ]
+  },
+  {
+    "id": "brawl_lost",
+    "title": "In the mud of the yard",
+    "text": "You wake on your back with Folcward's face above you and the taste of blood in your mouth. Ricdag has gone home whistling. By evening every hearth in the village has the story.",
+    "onShow": [
+      {
+        "type": "flag",
+        "key": "pigs_refused"
+      },
+      {
+        "type": "stat",
+        "key": "standing",
+        "delta": -1
+      }
+    ]
+  },
+  {
+    "id": "brawl_fled",
+    "title": "Withdrawal",
+    "text": "You step back out of reach and leave the yard with what dignity you can. Behind you, Ricdag jeers.",
+    "onShow": [
+      {
+        "type": "flag",
+        "key": "pigs_refused"
+      }
+    ]
+  },
+  {
+    "id": "brawl_parley",
+    "title": "Words over fists",
+    "text": "\"Enough!\" Your voice carries across the yard. \"Shall we brawl like thralls, two free houses, over a sow?\" Reginbern catches his son's arm. In the end he offers a penny, sullenly, and you take it.",
+    "onShow": [
+      {
+        "type": "resource",
+        "key": "silver",
+        "delta": 1
+      },
+      {
+        "type": "flag",
+        "key": "pigs_settled"
+      }
+    ]
+  },
+  {
+    "id": "reginbern_after",
+    "title": "Reginbern",
+    "text": "Reginbern nods to you, neither warm nor cold. The hedge by the boundary stone has been mended, more or less."
+  },
+  {
+    "id": "eilward_first",
+    "title": "The Count's reeve",
+    "text": "Eilward the reeve stands by the well with his staff of office and a tally-stick in his belt, a lean man who has never been loved in any village he served.\n\n\"{name}. The Count rides with Duke Henry to Fritzlar, where the Franks and Saxons will meet. While he is gone, his dues are owed all the same. Three measures of grain from your *Hof*, before the summer.\"",
+    "onShow": [
+      {
+        "type": "flag",
+        "key": "met_eilward"
+      },
+      {
+        "type": "obligation",
+        "id": "tribute_spring_919",
+        "text": "Three measures of grain to Count Hathumar's reeve, before the summer.",
+        "year": 919,
+        "season": 0
+      },
+      {
+        "type": "codex",
+        "id": "tribute"
+      }
+    ]
+  },
+  {
+    "id": "eilward",
+    "title": "Eilward the reeve",
+    "text": "Eilward taps the tally-stick against his palm. \"Well?\"",
+    "choices": [
+      {
+        "text": "Deliver three measures of grain.",
+        "if": [
+          {
+            "notFlag": "fulfilled_tribute_spring_919"
+          },
+          {
+            "resource": "grain",
+            "gte": 3
+          }
+        ],
+        "result": {
+          "text": "Folcward brings the sacks on the handcart. Eilward cuts three notches in the tally and splits it, giving you your half. \"The Count will hear you paid in good time.\"",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "grain",
+              "delta": -3
+            },
+            {
+              "type": "fulfil",
+              "id": "tribute_spring_919"
+            },
+            {
+              "type": "rep",
+              "key": "lord",
+              "delta": 1
+            }
+          ],
+          "next": "eilward"
+        }
+      },
+      {
+        "text": "Pay in silver instead: three pennies.",
+        "if": [
+          {
+            "notFlag": "fulfilled_tribute_spring_919"
+          },
+          {
+            "resource": "silver",
+            "gte": 3
+          }
+        ],
+        "result": {
+          "text": "Eilward bites one of the coins and pockets them with a sour look. \"The Count wants grain, not pennies. But I'll take them.\"",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "silver",
+              "delta": -3
+            },
+            {
+              "type": "fulfil",
+              "id": "tribute_spring_919"
+            }
+          ],
+          "next": "eilward"
+        }
+      },
+      {
+        "text": "Lay the matter of Reginbern's pigs before him. (Standing)",
+        "if": [
+          {
+            "flag": "ding_case"
+          },
+          {
+            "notFlag": "pigs_settled"
+          }
+        ],
+        "check": {
+          "stat": "standing",
+          "dc": 12
+        },
+        "success": {
+          "text": "Eilward hears you both at the next gathering under the lime tree. The law is plain: a man answers for his beasts. Reginbern pays two pennies before the assembled free men, red to the ears.",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "silver",
+              "delta": 2
+            },
+            {
+              "type": "flag",
+              "key": "pigs_settled"
+            },
+            {
+              "type": "rep",
+              "key": "lord",
+              "delta": 1
+            }
+          ],
+          "next": "eilward"
+        },
+        "failure": {
+          "text": "Eilward hears you both under the lime tree and rules that the hedge was a shared duty, so the fault is shared. No one pays. Reginbern smirks, but the thing is ended.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "pigs_settled"
+            }
+          ],
+          "next": "eilward"
+        }
+      },
+      {
+        "text": "Hand over the outlaw, bound.",
+        "if": [
+          {
+            "flag": "outlaw_captive"
+          },
+          {
+            "notFlag": "outlaw_delivered"
+          }
+        ],
+        "result": {
+          "text": "Eilward looks Wulfhard over as a man looks at a lame horse. \"He killed one of the Count's men at Martinmas. The Count will be pleased.\" He counts out two pennies, a rare thing from him. What becomes of Wulfhard you do not ask.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "outlaw_delivered"
+            },
+            {
+              "type": "resource",
+              "key": "silver",
+              "delta": 2
+            },
+            {
+              "type": "rep",
+              "key": "lord",
+              "delta": 2
+            }
+          ],
+          "next": "eilward"
+        }
+      },
+      {
+        "text": "Show him the silvered brooch.",
+        "if": [
+          {
+            "hasItem": "brooch"
+          }
+        ],
+        "result": {
+          "text": "Eilward turns the brooch in his fingers. \"This was Hrodgar's, the Count's man that Wulfhard killed. His widow will want it.\" He looks at you with something close to respect. \"You did the Count a service.\"",
+          "effects": [
+            {
+              "type": "item",
+              "id": "brooch",
+              "delta": -1
+            },
+            {
+              "type": "rep",
+              "key": "lord",
+              "delta": 1
+            }
+          ],
+          "next": "eilward"
+        }
+      },
+      {
+        "text": "\"What news from the south?\"",
+        "result": {
+          "text": "\"The Franks will make Henry king, if the Saxons do not first. Duke Eberhard himself carries the insignia, they say.\" Eilward shrugs. \"The Swabians and the Bavarians will not come. Kings come and go. The Count's dues remain.\"",
+          "next": "eilward"
+        }
+      },
+      {
+        "text": "Take your leave."
+      }
+    ]
+  },
+  {
+    "id": "smith",
+    "title": "Marcward's forge",
+    "text": "Heat rolls out of the smithy. Marcward, black-armed to the shoulder, sets down a half-shaped sickle. \"What will it be?\"",
+    "choices": [
+      {
+        "text": "Buy an ash spear. (3 pennies)",
+        "if": [
+          {
+            "notFlag": "bought_spear"
+          },
+          {
+            "resource": "silver",
+            "gte": 3
+          }
+        ],
+        "result": {
+          "text": "He takes down a spear with a leaf-shaped head, good Rhenish iron by his telling. \"Keep it greased.\"",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "silver",
+              "delta": -3
+            },
+            {
+              "type": "item",
+              "id": "spear",
+              "delta": 1
+            },
+            {
+              "type": "equip",
+              "id": "spear"
+            },
+            {
+              "type": "flag",
+              "key": "bought_spear"
+            }
+          ],
+          "next": "smith"
+        }
+      },
+      {
+        "text": "Buy a shield. (2 pennies)",
+        "if": [
+          {
+            "notFlag": "bought_shield"
+          },
+          {
+            "notFlag": "trigger_chest"
+          },
+          {
+            "resource": "silver",
+            "gte": 2
+          }
+        ],
+        "result": {
+          "text": "A plain round shield, the boards new and pale. \"Get it painted. A bare shield looks like a poor man's.\"",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "silver",
+              "delta": -2
+            },
+            {
+              "type": "item",
+              "id": "shield",
+              "delta": 1
+            },
+            {
+              "type": "equip",
+              "id": "shield"
+            },
+            {
+              "type": "flag",
+              "key": "bought_shield"
+            }
+          ],
+          "next": "smith"
+        }
+      },
+      {
+        "text": "\"Have you seen any stranger about?\"",
+        "if": [
+          {
+            "flag": "ewe_known"
+          },
+          {
+            "notFlag": "outlaw_done"
+          }
+        ],
+        "result": {
+          "text": "Marcward wipes his hands. \"A man came to my door at dusk a week back. Wanted a spearhead mended, would not give his name. Paid with a cut piece of silver.\" He pauses. \"He had the look of a man with nowhere to go.\"",
+          "next": "smith"
+        }
+      },
+      {
+        "text": "Nothing today."
+      }
+    ]
+  },
+  {
+    "id": "priest_first",
+    "title": "Father Bovo",
+    "text": "Father Bovo is a round little man in a much-patched habit, sweeping the step of his wooden church. He was schooled, he likes to tell people, at Corvey itself, though only for a winter.\n\n\"{name}! You were not at Mass on Sunday. No, no, I know, the spring work. God sees it.\"",
+    "onShow": [
+      {
+        "type": "flag",
+        "key": "met_bovo"
+      },
+      {
+        "type": "codex",
+        "id": "church"
+      }
+    ],
+    "choices": [
+      {
+        "text": "Greet him.",
+        "result": {
+          "text": "He beams at you.",
+          "next": "priest"
+        }
+      }
+    ]
+  },
+  {
+    "id": "priest",
+    "title": "Father Bovo",
+    "text": "\"What can the Church do for you, my son?\"",
+    "choices": [
+      {
+        "text": "Ask a blessing on your fields. (Piety)",
+        "if": [
+          {
+            "notFlag": "blessed"
+          }
+        ],
+        "check": {
+          "stat": "piety",
+          "dc": 12
+        },
+        "success": {
+          "text": "Bovo walks your boundaries with you, sprinkling holy water and chanting the Rogation psalms in a cracked voice. You feel the weight of the winter lift from you.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "blessed"
+            },
+            {
+              "type": "heal"
+            },
+            {
+              "type": "rep",
+              "key": "church",
+              "delta": 1
+            }
+          ],
+          "next": "priest"
+        },
+        "failure": {
+          "text": "Bovo mumbles the blessing over a cup of your ale, losing his place twice. You are not sure God was listening, and neither, you suspect, is he.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "blessed"
+            }
+          ],
+          "next": "priest"
+        }
+      },
+      {
+        "text": "Give a penny in alms.",
+        "if": [
+          {
+            "resource": "silver",
+            "gte": 1
+          },
+          {
+            "notFlag": "alms"
+          }
+        ],
+        "result": {
+          "text": "\"For the poor, and for the roof, which leaks.\" He tucks the coin away. \"God remembers.\"",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "silver",
+              "delta": -1
+            },
+            {
+              "type": "rep",
+              "key": "church",
+              "delta": 1
+            },
+            {
+              "type": "flag",
+              "key": "alms"
+            }
+          ],
+          "next": "priest"
+        }
+      },
+      {
+        "text": "\"Who is living in the wood, Father?\"",
+        "if": [
+          {
+            "flag": "ewe_known"
+          },
+          {
+            "notFlag": "outlaw_named"
+          }
+        ],
+        "result": {
+          "text": "His face falls. \"Wulfhard, I think. He killed one of the Count's household at Martinmas, over dice, and would not stand to answer for it. They have put him outside the peace. Any man may kill him and owe nothing.\" He crosses himself. \"Any man may. That does not mean any man should.\"",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "outlaw_named"
+            },
+            {
+              "type": "codex",
+              "id": "outlawry"
+            }
+          ],
+          "next": "priest"
+        }
+      },
+      {
+        "text": "Confess the blood on your hands.",
+        "if": [
+          {
+            "flag": "killed_outlaw"
+          },
+          {
+            "notFlag": "confessed"
+          }
+        ],
+        "result": {
+          "text": "You kneel in the cold church and tell it all. Bovo hears you out and sets a penance of bread and water through the Ember days. \"He was outside the law,\" he says at the end, \"but not outside God.\"",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "confessed"
+            },
+            {
+              "type": "stat",
+              "key": "piety",
+              "delta": 1
+            },
+            {
+              "type": "rep",
+              "key": "church",
+              "delta": 1
+            }
+          ],
+          "next": "priest"
+        }
+      },
+      {
+        "text": "Take your leave."
+      }
+    ]
+  },
+  {
+    "id": "hildegund",
+    "title": "Hildegund the alewife",
+    "text": "Hildegund brews the best ale in the village and knows everything worth knowing, and a great deal that is not.",
+    "choices": [
+      {
+        "text": "\"What news, Hildegund?\"",
+        "result": {
+          "text": "\"News? A pedlar from Hersfeld says the Franks are already gathering at Fritzlar, and that Archbishop Heriger has his holy oil ready. And they say Duke Henry was out with his birds when the messengers found him, and did not even stop his hawking to hear them!\" She laughs. \"Well, that's a story, isn't it.\"",
+          "next": "hildegund"
+        }
+      },
+      {
+        "text": "Buy a cup of ale. (1 penny)",
+        "if": [
+          {
+            "resource": "silver",
+            "gte": 1
+          }
+        ],
+        "result": {
+          "text": "It is dark and sour and very good. For a moment the spring looks kinder.",
+          "effects": [
+            {
+              "type": "resource",
+              "key": "silver",
+              "delta": -1
+            },
+            {
+              "type": "hp",
+              "delta": 3
+            }
+          ],
+          "next": "hildegund"
+        }
+      },
+      {
+        "text": "Move on."
+      }
+    ]
+  },
+  {
+    "id": "outlaw_camp",
+    "title": "A fire in the wood",
+    "text": "In a clearing among the oaks a fire smoulders under a lean-to of branches. A grey fleece is stretched to dry on a frame: your ewe's. A man rises from the shadow of the lean-to with a spear in his hands. He is thin as winter, and his eyes measure you.\n\n\"This is the Count's forest,\" he says. \"Not yours.\"",
+    "choices": [
+      {
+        "text": "Draw your weapon. He is outside the peace.",
+        "result": {
+          "text": "No more words. He sees it in your face and comes on.",
+          "combat": {
+            "enemy": "wulfhard",
+            "onWin": "outlaw_beaten",
+            "onFlee": "outlaw_fled"
+          }
+        }
+      },
+      {
+        "text": "Talk to him. (Wits)",
+        "check": {
+          "stat": "wits",
+          "dc": 14
+        },
+        "success": {
+          "text": "You keep your hands from your seax and speak of the ewe, of the winter, of where a man might go who wants to live. Slowly the spear-point drops.",
+          "next": "outlaw_talk"
+        },
+        "failure": {
+          "text": "Something in your words, or in your eyes, decides him. He comes at you with the spear.",
+          "combat": {
+            "enemy": "wulfhard",
+            "onWin": "outlaw_beaten",
+            "onFlee": "outlaw_fled"
+          }
+        }
+      },
+      {
+        "text": "Back away. This is no fight for a farmer.",
+        "result": {
+          "text": "You step back into the trees. He does not follow.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "outlaw_left"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "outlaw_again",
+    "title": "The camp in the wood",
+    "text": "Wulfhard is still here, crouched by his fire. He rises when he sees you.",
+    "choices": [
+      {
+        "text": "Fight him.",
+        "result": {
+          "text": "He has been waiting for this.",
+          "combat": {
+            "enemy": "wulfhard",
+            "onWin": "outlaw_beaten",
+            "onFlee": "outlaw_fled"
+          }
+        }
+      },
+      {
+        "text": "Leave him be."
+      }
+    ]
+  },
+  {
+    "id": "outlaw_fled",
+    "title": "Through the trees",
+    "text": "You crash away through the undergrowth until your lungs burn. He does not follow far. The ewe is gone, and the man in the wood knows your face.",
+    "onShow": [
+      {
+        "type": "flag",
+        "key": "outlaw_left"
+      }
+    ]
+  },
+  {
+    "id": "outlaw_talk",
+    "title": "Wulfhard",
+    "text": "\"Wulfhard,\" he says at last. \"They put me outside the peace for a killing. A fair fight, over dice. Hrodgar drew first.\" He laughs without humour. \"No one asked.\"\n\nHe pulls a disc brooch from his tunic, its face silvered. \"Take this for the ewe. Let me go north to the Danes, and you'll never see me again.\"",
+    "choices": [
+      {
+        "text": "Take the brooch and let him go.",
+        "result": {
+          "text": "He is gone into the trees before you have closed your hand on the brooch. You look at it: too fine for a man like him. You wonder whose cloak it fastened.",
+          "effects": [
+            {
+              "type": "item",
+              "id": "brooch",
+              "delta": 1
+            },
+            {
+              "type": "flag",
+              "key": "outlaw_done"
+            },
+            {
+              "type": "rep",
+              "key": "church",
+              "delta": 1
+            }
+          ]
+        }
+      },
+      {
+        "text": "Bind him and take him to the reeve. (Strength)",
+        "check": {
+          "stat": "strength",
+          "dc": 14
+        },
+        "success": {
+          "text": "He is weak from the winter, and you are quicker than he expects. You bind his wrists with his own belt and march him out of the wood.",
+          "effects": [
+            {
+              "type": "item",
+              "id": "brooch",
+              "delta": 1
+            },
+            {
+              "type": "flag",
+              "key": "outlaw_captive"
+            },
+            {
+              "type": "flag",
+              "key": "outlaw_done"
+            }
+          ]
+        },
+        "failure": {
+          "text": "He twists out of your grip and snatches up the spear.",
+          "combat": {
+            "enemy": "wulfhard",
+            "onWin": "outlaw_beaten",
+            "onFlee": "outlaw_fled"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "id": "outlaw_beaten",
+    "title": "In the clearing",
+    "text": "Wulfhard is on his knees in the leaf-mould, the spear out of reach, his breath coming in rags. \"Do it, then,\" he says. \"The law says you may.\"",
+    "choices": [
+      {
+        "text": "The law says you may. Do it.",
+        "result": {
+          "text": "It is quickly done. Afterwards the wood is very quiet. On his body you find a silvered brooch, too fine for a man like him. You drive what is left of your ewe's fleece home before you, and do not sleep well.",
+          "effects": [
+            {
+              "type": "item",
+              "id": "brooch",
+              "delta": 1
+            },
+            {
+              "type": "flag",
+              "key": "killed_outlaw"
+            },
+            {
+              "type": "flag",
+              "key": "outlaw_done"
+            },
+            {
+              "type": "stat",
+              "key": "standing",
+              "delta": 1
+            },
+            {
+              "type": "rep",
+              "key": "church",
+              "delta": -1
+            }
+          ]
+        }
+      },
+      {
+        "text": "Bind him for the Count's justice.",
+        "result": {
+          "text": "You bind his wrists with his own belt. On him you find a silvered brooch, too fine for a man like him.",
+          "effects": [
+            {
+              "type": "item",
+              "id": "brooch",
+              "delta": 1
+            },
+            {
+              "type": "flag",
+              "key": "outlaw_captive"
+            },
+            {
+              "type": "flag",
+              "key": "outlaw_done"
+            }
+          ]
+        }
+      },
+      {
+        "text": "Let him go. Tell him to be gone from the Count's lands.",
+        "result": {
+          "text": "He stares at you as if you were mad, then stumbles away into the trees. Mercy, the priests say, is a virtue. The Count may call it something else.",
+          "effects": [
+            {
+              "type": "flag",
+              "key": "outlaw_done"
+            },
+            {
+              "type": "rep",
+              "key": "church",
+              "delta": 1
+            },
+            {
+              "type": "rep",
+              "key": "lord",
+              "delta": -1
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "id": "north_road_blocked",
+    "title": "The north road",
+    "text": "The track runs north through the forest towards Count Hathumar's *Burg*, and beyond it to the Duke's lands around Quedlinburg.",
+    "choices": [
+      {
+        "text": "Turn back.",
+        "if": [
+          {
+            "notFlag": "slice_complete"
+          }
+        ],
+        "result": {
+          "text": "Your business is here this spring. The road will wait."
+        }
+      },
+      {
+        "text": "Turn back.",
+        "if": [
+          {
+            "flag": "slice_complete"
+          }
+        ],
+        "result": {
+          "text": "Here the first leaf of the saga ends. The road north, the *Burg* and the king's wars are not yet written."
+        }
+      }
+    ]
+  },
+  {
+    "id": "summer_919",
+    "title": "A rider from the south",
+    "text": "In the first heat of summer a rider comes up the north road on a lathered horse, and the whole village runs to the well to hear him.\n\nAt Fritzlar, in the month of May, the Franks and the Saxons have raised Duke Henry to be their king. Archbishop Heriger came with the holy oil to anoint him, as the Frankish kings were anointed, and Henry would not have it. It is enough, he said, to be called king by God's grace and yours; let the anointing go to better men than I.\n\nFather Bovo is scandalised. Eilward is thoughtful. Folcward only says that a Saxon king is a Saxon king, and goes back to the hay.\n\nA king of our own people. What that will mean for a free man in Hrodwardeshusen, no one yet knows.",
+    "onShow": [
+      {
+        "type": "codex",
+        "id": "fritzlar"
+      },
+      {
+        "type": "flag",
+        "key": "slice_complete"
+      }
+    ],
+    "choices": [
+      {
+        "text": "Continue",
+        "result": {
+          "text": "Here ends the first leaf of the saga of {name}. You may walk the village a while longer; the rest of the year 919, and the reign of King Henry, are still to be written."
+        }
+      }
+    ]
+  }
+]

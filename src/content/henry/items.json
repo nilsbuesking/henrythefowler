@@ -1,0 +1,52 @@
+{
+  "seax": {
+    "id": "seax",
+    "name": "Seax",
+    "kind": "weapon",
+    "description": "A long single-edged knife, worn by every free Saxon. Tool, weapon and mark of status at once.",
+    "attack": 1,
+    "damage": [2, 4]
+  },
+  "spear": {
+    "id": "spear",
+    "name": "Ash spear",
+    "kind": "weapon",
+    "description": "An iron head on an ash shaft. The common weapon of the levy.",
+    "attack": 2,
+    "damage": [2, 5]
+  },
+  "woodaxe": {
+    "id": "woodaxe",
+    "name": "Wood axe",
+    "kind": "weapon",
+    "description": "Meant for timber, not men, but it will serve.",
+    "attack": 0,
+    "damage": [2, 5]
+  },
+  "shield": {
+    "id": "shield",
+    "name": "Lime-wood shield",
+    "kind": "shield",
+    "description": "A round shield of lime-wood boards, hide-faced, with an iron boss.",
+    "defence": 2
+  },
+  "jerkin": {
+    "id": "jerkin",
+    "name": "Leather jerkin",
+    "kind": "armour",
+    "description": "Thick hide over quilted wool. Your father wore it on the Danish border.",
+    "armour": 1
+  },
+  "cloak": {
+    "id": "cloak",
+    "name": "Wool cloak",
+    "kind": "misc",
+    "description": "A heavy cloak of undyed wool, pinned with a bronze brooch."
+  },
+  "brooch": {
+    "id": "brooch",
+    "name": "Silvered brooch",
+    "kind": "misc",
+    "description": "A disc brooch with a silvered face, taken from the outlaw. Someone will know whose it was."
+  }
+}

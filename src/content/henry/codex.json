@@ -1,0 +1,56 @@
+{
+  "conrad": {
+    "id": "conrad",
+    "title": "The death of King Conrad",
+    "evidence": "attested",
+    "text": "Conrad I, the Franconian king of East Francia, died in December 918. Widukind of Corvey says that on his deathbed he told his brother Eberhard to carry the royal insignia to Henry, Duke of the Saxons, his former rival. The scene is reported by a Saxon writer some fifty years later and is likely stylised to make Henry's succession look rightful."
+  },
+  "fritzlar": {
+    "id": "fritzlar",
+    "title": "The election at Fritzlar (919)",
+    "evidence": "attested",
+    "text": "In May 919 Franks and Saxons gathered at Fritzlar and raised Henry to the kingship. According to Widukind, Henry declined the anointing offered by Archbishop Heriger of Mainz, saying it was enough to be called king. Why he refused is debated: humility, distance from the bishops, or Widukind's later shaping of the story. Swabia and Bavaria were not represented and did not yet accept him."
+  },
+  "saxon_orders": {
+    "id": "saxon_orders",
+    "title": "Saxon society",
+    "evidence": "attested",
+    "text": "Carolingian-era writers describe the Saxons as divided into nobles (edhilingi), free men (frilingi) and half-free dependants (lazzi), with the unfree beneath them. How sharply these orders still divided Saxon society by the tenth century is uncertain. A free landholder of middling means, as you are, would owe service and dues to a lord while remaining his own man in law."
+  },
+  "compensation": {
+    "id": "compensation",
+    "title": "Feud and compensation",
+    "evidence": "attested",
+    "text": "The Lex Saxonum, recorded under Charlemagne, sets out payments for injuries, theft and killings. Damage done by a neighbour's animals was a matter for compensation (*Buße*), not violence. In practice, disputes were settled by negotiation, by the judgment of an assembly, or by feud, and the line between these was often thin."
+  },
+  "ding": {
+    "id": "ding",
+    "title": "The assembly (*Ding*)",
+    "evidence": "reconstructed",
+    "text": "Free men met at assemblies to settle disputes, swear oaths and hear the demands of their lords. The details of local assemblies in tenth-century Saxony are poorly recorded; what is shown here is reconstructed from earlier Saxon and wider Frankish evidence."
+  },
+  "outlawry": {
+    "id": "outlawry",
+    "title": "Outlawry",
+    "evidence": "debated",
+    "text": "A man who would not answer for a killing or a theft could be put outside the peace (*friedlos*): he lost the protection of law and kin, and anyone could kill him without paying compensation. The term and its full rigour are better documented for later centuries than for the tenth."
+  },
+  "tribute": {
+    "id": "tribute",
+    "title": "Dues to a lord",
+    "evidence": "reconstructed",
+    "text": "Free landholders owed their lords dues in kind (grain, livestock, honey, cloth), labour, and service in war. The amounts and timing in Ottonian Saxony are not known in detail; the game simplifies them into seasonal deliveries."
+  },
+  "fields": {
+    "id": "fields",
+    "title": "Sowing and the fields",
+    "evidence": "debated",
+    "text": "Saxon farmers grew rye, barley and oats, with rye sown in autumn and spring grains in March and April. How far the rotation of three fields had spread east of the Rhine by the tenth century is debated; many holdings probably still worked a simpler rotation."
+  },
+  "church": {
+    "id": "church",
+    "title": "The village church",
+    "evidence": "attested",
+    "text": "A century after Charlemagne's wars against the Saxons, the land was dotted with small churches founded by bishops, monasteries and local lords. Their priests were often poorly educated, and the tithe they collected was one more due on the harvest."
+  }
+}

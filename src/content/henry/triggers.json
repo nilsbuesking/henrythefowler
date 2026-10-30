@@ -1,0 +1,232 @@
+[
+ {
+  "id": "bed",
+  "map": "hall",
+  "x": 1,
+  "y": 1,
+  "event": "rest"
+ },
+ {
+  "id": "bed2",
+  "map": "hall",
+  "x": 3,
+  "y": 1,
+  "event": "rest"
+ },
+ {
+  "id": "chest",
+  "map": "hall",
+  "x": 8,
+  "y": 1,
+  "event": "chest",
+  "once": true
+ },
+ {
+  "id": "strongbox",
+  "map": "hall",
+  "x": 11,
+  "y": 1,
+  "event": "strongbox"
+ },
+ {
+  "id": "field_damage",
+  "map": "village",
+  "x": 2,
+  "y": 13,
+  "event": "field_damage",
+  "once": true,
+  "if": [
+   {
+    "flag": "pigs_known"
+   }
+  ]
+ },
+ {
+  "id": "field_damage",
+  "map": "village",
+  "x": 3,
+  "y": 13,
+  "event": "field_damage",
+  "once": true,
+  "if": [
+   {
+    "flag": "pigs_known"
+   }
+  ]
+ },
+ {
+  "id": "field_damage",
+  "map": "village",
+  "x": 4,
+  "y": 13,
+  "event": "field_damage",
+  "once": true,
+  "if": [
+   {
+    "flag": "pigs_known"
+   }
+  ]
+ },
+ {
+  "id": "field_damage",
+  "map": "village",
+  "x": 5,
+  "y": 13,
+  "event": "field_damage",
+  "once": true,
+  "if": [
+   {
+    "flag": "pigs_known"
+   }
+  ]
+ },
+ {
+  "id": "field_damage",
+  "map": "village",
+  "x": 6,
+  "y": 13,
+  "event": "field_damage",
+  "once": true,
+  "if": [
+   {
+    "flag": "pigs_known"
+   }
+  ]
+ },
+ {
+  "id": "field_damage",
+  "map": "village",
+  "x": 7,
+  "y": 13,
+  "event": "field_damage",
+  "once": true,
+  "if": [
+   {
+    "flag": "pigs_known"
+   }
+  ]
+ },
+ {
+  "id": "field_damage",
+  "map": "village",
+  "x": 8,
+  "y": 13,
+  "event": "field_damage",
+  "once": true,
+  "if": [
+   {
+    "flag": "pigs_known"
+   }
+  ]
+ },
+ {
+  "id": "field_damage",
+  "map": "village",
+  "x": 9,
+  "y": 13,
+  "event": "field_damage",
+  "once": true,
+  "if": [
+   {
+    "flag": "pigs_known"
+   }
+  ]
+ },
+ {
+  "id": "field_damage",
+  "map": "village",
+  "x": 10,
+  "y": 13,
+  "event": "field_damage",
+  "once": true,
+  "if": [
+   {
+    "flag": "pigs_known"
+   }
+  ]
+ },
+ {
+  "id": "outlaw_camp",
+  "map": "village",
+  "x": 31,
+  "y": 21,
+  "event": "outlaw_camp",
+  "once": true,
+  "if": [
+   {
+    "flag": "ewe_known"
+   }
+  ]
+ },
+ {
+  "id": "outlaw_again_31",
+  "map": "village",
+  "x": 31,
+  "y": 21,
+  "event": "outlaw_again",
+  "if": [
+   {
+    "flag": "outlaw_left"
+   },
+   {
+    "notFlag": "outlaw_done"
+   }
+  ]
+ },
+ {
+  "id": "outlaw_camp",
+  "map": "village",
+  "x": 32,
+  "y": 21,
+  "event": "outlaw_camp",
+  "once": true,
+  "if": [
+   {
+    "flag": "ewe_known"
+   }
+  ]
+ },
+ {
+  "id": "outlaw_again_32",
+  "map": "village",
+  "x": 32,
+  "y": 21,
+  "event": "outlaw_again",
+  "if": [
+   {
+    "flag": "outlaw_left"
+   },
+   {
+    "notFlag": "outlaw_done"
+   }
+  ]
+ },
+ {
+  "id": "outlaw_camp",
+  "map": "village",
+  "x": 33,
+  "y": 21,
+  "event": "outlaw_camp",
+  "once": true,
+  "if": [
+   {
+    "flag": "ewe_known"
+   }
+  ]
+ },
+ {
+  "id": "outlaw_again_33",
+  "map": "village",
+  "x": 33,
+  "y": 21,
+  "event": "outlaw_again",
+  "if": [
+   {
+    "flag": "outlaw_left"
+   },
+   {
+    "notFlag": "outlaw_done"
+   }
+  ]
+ }
+]

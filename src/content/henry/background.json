@@ -1,0 +1,46 @@
+[
+  {
+    "id": "landholder",
+    "name": "Free landholder",
+    "description": "A free Saxon of middling means, holding a *Hof* of your own: a hall, a byre, a few fields and two men in your service. You owe your lord, Count Hathumar, tribute and service; you owe your neighbours peace.",
+    "stats": { "strength": 5, "endurance": 5, "craft": 5, "wits": 5, "standing": 4, "piety": 4 },
+    "resources": { "grain": 10, "livestock": 6, "silver": 6, "retainers": 2 },
+    "rep": { "lord": 0, "king": 0, "church": 1, "village": 1 },
+    "items": { "seax": 1, "woodaxe": 1, "cloak": 1 },
+    "equip": ["seax"],
+    "start": { "map": "hall", "x": 4, "y": 2, "year": 919, "season": 0 },
+    "startEvent": "intro",
+    "traits": [
+      {
+        "id": "strong",
+        "name": "Strong of arm",
+        "description": "You have swung an axe since you could walk.",
+        "effects": [{ "type": "stat", "key": "strength", "delta": 2 }]
+      },
+      {
+        "id": "shrewd",
+        "name": "Shrewd",
+        "description": "Men say you could sell a lame ox twice.",
+        "effects": [{ "type": "stat", "key": "wits", "delta": 2 }]
+      },
+      {
+        "id": "skilled",
+        "name": "Skilled hands",
+        "description": "Plough, loom or roof-beam: your work holds.",
+        "effects": [{ "type": "stat", "key": "craft", "delta": 2 }]
+      },
+      {
+        "id": "devout",
+        "name": "God-fearing",
+        "description": "You were schooled a little by the monks, and it stayed with you.",
+        "effects": [{ "type": "stat", "key": "piety", "delta": 2 }, { "type": "rep", "key": "church", "delta": 1 }]
+      },
+      {
+        "id": "wellborn",
+        "name": "Well connected",
+        "description": "Your mother's kin sit close to the Count's table.",
+        "effects": [{ "type": "stat", "key": "standing", "delta": 2 }, { "type": "rep", "key": "lord", "delta": 1 }]
+      }
+    ]
+  }
+]

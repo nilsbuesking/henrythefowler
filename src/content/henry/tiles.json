@@ -1,0 +1,122 @@
+{
+ ".": {
+  "name": "grass",
+  "walkable": true,
+  "sprite": "grass"
+ },
+ "\"": {
+  "name": "meadow",
+  "walkable": true,
+  "sprite": "meadow"
+ },
+ ",": {
+  "name": "field",
+  "walkable": true,
+  "sprite": "field"
+ },
+ "T": {
+  "name": "forest",
+  "walkable": true,
+  "sprite": "forest"
+ },
+ "~": {
+  "name": "stream",
+  "walkable": false,
+  "sprite": "water"
+ },
+ "=": {
+  "name": "track",
+  "walkable": true,
+  "sprite": "path"
+ },
+ "B": {
+  "name": "footbridge",
+  "walkable": true,
+  "sprite": "bridge"
+ },
+ "R": {
+  "name": "thatched roof",
+  "walkable": false,
+  "sprite": "thatch"
+ },
+ "C": {
+  "name": "church roof",
+  "walkable": false,
+  "sprite": "shingle"
+ },
+ "+": {
+  "name": "doorway",
+  "walkable": true,
+  "sprite": "door"
+ },
+ "d": {
+  "name": "door",
+  "walkable": false,
+  "sprite": "door"
+ },
+ "|": {
+  "name": "wattle fence",
+  "walkable": false,
+  "sprite": "fence"
+ },
+ "w": {
+  "name": "well",
+  "walkable": false,
+  "sprite": "well"
+ },
+ "^": {
+  "name": "rocks",
+  "walkable": false,
+  "sprite": "rocks"
+ },
+ "x": {
+  "name": "wayside cross",
+  "walkable": false,
+  "sprite": "cross"
+ },
+ "o": {
+  "name": "boundary stone",
+  "walkable": false,
+  "sprite": "stone"
+ },
+ "f": {
+  "name": "campfire",
+  "walkable": false,
+  "sprite": "fire"
+ },
+ "_": {
+  "name": "floor",
+  "walkable": true,
+  "sprite": "floor"
+ },
+ "#": {
+  "name": "wall",
+  "walkable": false,
+  "sprite": "wall"
+ },
+ "b": {
+  "name": "bed",
+  "walkable": true,
+  "sprite": "bed"
+ },
+ "t": {
+  "name": "table",
+  "walkable": false,
+  "sprite": "table"
+ },
+ "h": {
+  "name": "hearth",
+  "walkable": false,
+  "sprite": "hearth"
+ },
+ "k": {
+  "name": "chest",
+  "walkable": true,
+  "sprite": "chest"
+ },
+ " ": {
+  "name": "darkness",
+  "walkable": false,
+  "sprite": "void"
+ }
+}

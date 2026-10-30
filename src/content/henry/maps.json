@@ -1,0 +1,81 @@
+{
+ "village": {
+  "id": "village",
+  "name": "the village of Hrodwardeshusen",
+  "rows": [
+   "TTTTTTTTTTTTTTTTTTT=TTTTTTT~TTTTTTTTTTTT",
+   "TTTTTTTTTTTTTTTTTTT=TTTTTTT~TTTTTTTTTTTT",
+   "TTTTTTTTTTTTTTTTTTT=TTTTTTT~TTTTTTTTTTTT",
+   "TTT|||||||||||.....=...^^^.~.....TTTTTTT",
+   "TTT|.RRRRRRRR|.....=...^^^.~.....TTTTTTT",
+   "...|.RRRRRRRR|.....=.......~.....TTTTTTT",
+   "...|.RRRRRR..|.....=.......~......TTTTTT",
+   "...|.RRR+RR..|.RRR.=.RRRR..~......TTTTTT",
+   "...|....=....|.RRR.=.RRRR..~......TTTTTT",
+   "...|||||=|||||.RdR.=.RdRR..~......TTTTTT",
+   "........=..........=.......~......TTTTTT",
+   "........===================B=====.TTTTTT",
+   ".|||||||||||................~...=.TTTTTT",
+   "..,,,,,,,,,...............\".~CCC=xTTTTTT",
+   "..,,,,,,,,,........w......\".~CCC=.TTTTTT",
+   "..,,,,,,,,,...RRRR...RRRR.\".~CCC=.TTTTTT",
+   "..,,,,,,,,,...RdRR...RRdR.\".~CdC=.TTTTTT",
+   "..,,,,,,,,,...............\".~...=.TTTTTT",
+   "..,,,,,,,,,o..............\".~.TT=TTTTTTT",
+   "..,,,,,,,,,.RRRRR.........\".~.TT=TTTTTTT",
+   "..,,,,,,,,,.RRRRR.........\".~.TT.TTTTTTT",
+   "..,,,,,,,,,.RRdRR.........\".~.T...TTTTTT",
+   "TTTTTTT...................\".~.T...TTTTTT",
+   "TTTTTTT...................\".~.T.f.TTTTTT",
+   "TTTTTTT...................\".~.TTTTTTTTTT",
+   "TTTTTTT.....................~.TTTTTTTTTT"
+  ],
+  "outside": "T",
+  "exits": [
+   {
+    "x": 8,
+    "y": 7,
+    "to": "hall",
+    "tx": 6,
+    "ty": 6
+   },
+   {
+    "x": 19,
+    "y": 0,
+    "to": "village",
+    "tx": 19,
+    "ty": 1,
+    "if": [
+     {
+      "flag": "slice_complete"
+     }
+    ],
+    "blockedEvent": "north_road_blocked"
+   }
+  ]
+ },
+ "hall": {
+  "id": "hall",
+  "name": "your hall",
+  "rows": [
+   "#############",
+   "#b_b___#k__k#",
+   "#______#____#",
+   "#______+____#",
+   "#_t_t___hh__#",
+   "#_t_t___hh__#",
+   "#___________#",
+   "######+######"
+  ],
+  "outside": " ",
+  "exits": [
+   {
+    "x": 6,
+    "y": 7,
+    "to": "village",
+    "tx": 8,
+    "ty": 8
+   }
+  ]
+ }
+}
