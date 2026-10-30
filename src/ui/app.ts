@@ -5,6 +5,21 @@ import { deserialize, serialize } from "../core/save";
 import { REP_KEYS, RESOURCE_KEYS, STAT_KEYS, type Content, type GameState } from "../core/types";
 import { MapRenderer } from "./renderer";
 
+const TEXT_SCALES = [1, 1.15, 1.3, 1.45, 1.6, 1.8];
+const TEXT_KEY = "henry.textScale";
+const DEFAULT_TEXT_STEP = 1;
+
+function loadTextStep(): number {
+  try {
+    const n = Number(localStorage.getItem(TEXT_KEY));
+    return Number.isInteger(n) && n >= 0 && n < TEXT_SCALES.length && localStorage.getItem(TEXT_KEY) !== null
+      ? n
+      : DEFAULT_TEXT_STEP;
+  } catch {
+    return DEFAULT_TEXT_STEP;
+  }
+}
+
 const SAVE_KEYS = { manual: "henry.save.manual", auto: "henry.save.auto" } as const;
 type Slot = keyof typeof SAVE_KEYS;
 
@@ -77,6 +92,7 @@ export class App {
   private lastMove = 0;
   private createName = "Thiadric";
   private createTrait = "";
+  private textStep = loadTextStep();
 
   private el: {
     overlay: HTMLElement;
@@ -116,6 +132,7 @@ export class App {
       toast: root.querySelector(".toast")!,
     };
 
+    this.applyTextSize();
     window.addEventListener("keydown", (e) => this.onKey(e));
     this.renderer.canvas.addEventListener("click", (e) => {
       const d = this.renderer.directionFromClick(e);
@@ -181,6 +198,25 @@ export class App {
     window.setTimeout(() => this.el.toast.classList.remove("show"), 1800);
   }
 
+  /** Changes text size by one step (-1 smaller, +1 larger) and remembers it in this browser. */
+  private changeTextSize(delta: number): void {
+    const next = Math.max(0, Math.min(TEXT_SCALES.length - 1, this.textStep + delta));
+    if (next === this.textStep) return;
+    this.textStep = next;
+    this.applyTextSize();
+    try {
+      localStorage.setItem(TEXT_KEY, String(next));
+    } catch {
+      /* storage unavailable: the size still applies for this visit */
+    }
+    this.renderPanel();
+    this.toast(`Text size ${next + 1} of ${TEXT_SCALES.length}`);
+  }
+
+  private applyTextSize(): void {
+    document.documentElement.style.setProperty("--text-scale", String(TEXT_SCALES[this.textStep]));
+  }
+
   private step(dx: number, dy: number): void {
     if (!this.game || this.modal || this.game.state.mode.kind !== "explore") return;
     const now = performance.now();
@@ -194,6 +230,16 @@ export class App {
   private onKey(e: KeyboardEvent): void {
     if ((e.target as HTMLElement).tagName === "INPUT") {
       if (e.key === "Enter") this.newGame();
+      return;
+    }
+    if (e.key === "+" || e.key === "=") {
+      this.changeTextSize(1);
+      e.preventDefault();
+      return;
+    }
+    if (e.key === "-" || e.key === "_") {
+      this.changeTextSize(-1);
+      e.preventDefault();
       return;
     }
     const k = e.key;
@@ -300,7 +346,9 @@ export class App {
     const t = (e.target as HTMLElement).closest<HTMLElement>("[data-act]");
     if (!t) return;
     const act = t.dataset.act!;
-    if (act === "save") this.save();
+    if (act === "text-") this.changeTextSize(-1);
+    else if (act === "text+") this.changeTextSize(1);
+    else if (act === "save") this.save();
     else if (act === "load") this.load();
     else if (act === "codex") this.openModal("codex");
     else if (act === "help") this.openModal("help");
@@ -348,7 +396,7 @@ export class App {
   private renderPanel(): void {
     const g = this.game;
     if (!g) {
-      this.el.panel.innerHTML = `<div class="panel-empty">No saga begun.</div>`;
+      this.el.panel.innerHTML = `<div class="panel-empty muted">No saga begun.</div>${this.textSizeHtml()}`;
       return;
     }
     const s = g.state;
@@ -402,7 +450,18 @@ export class App {
         <button data-act="load">Load</button>
         <button data-act="codex">Codex</button>
         <button data-act="help">Help</button>
-      </div>`;
+      </div>
+      ${this.textSizeHtml()}`;
+  }
+
+  private textSizeHtml(): string {
+    return `<div class="textsize">
+      <span>Text size</span>
+      <button data-act="text-" aria-label="Smaller text" ${this.textStep === 0 ? "disabled" : ""}>A−</button>
+      <button data-act="text+" aria-label="Larger text" ${
+        this.textStep === TEXT_SCALES.length - 1 ? "disabled" : ""
+      }>A+</button>
+    </div>`;
   }
 
   private renderLog(): void {
@@ -537,7 +596,7 @@ export class App {
             : ""
         }
       </div>
-      <p class="muted small">A first playable slice: the spring of 919. Move with the arrow keys or WASD; walk into people to talk.</p>
+      <p class="muted small">A first playable slice: the spring of 919. Move with the arrow keys or WASD; walk into people to talk. Press + or − to change the text size.</p>
     </div>`;
   }
 
@@ -588,6 +647,7 @@ export class App {
         <dt>1–9, Enter</dt><dd>Choose in a conversation or a fight.</dd>
         <dt>C</dt><dd>Codex: historical notes you have unlocked.</dd>
         <dt>H or ?</dt><dd>This help.</dd>
+        <dt>+ and −</dt><dd>Larger or smaller text (also the A+ and A− buttons in the side panel).</dd>
       </dl>
       <p>Checks roll a d20 and add one of your qualities; the odds are shown beside each choice. Wounds carry over between fights and heal slowly with the seasons. You can die.</p>
       <p>Sleep in your bed to end the season. The game saves itself each time a season turns; you can also save by hand.</p>
